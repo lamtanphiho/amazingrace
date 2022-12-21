@@ -9,7 +9,7 @@
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=960 height=600></canvas>
+      <canvas id="unity-canvas" width=1280 height=720></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
@@ -65,7 +65,7 @@
         streamingAssetsUrl: "StreamingAssets",
         companyName: "desd",
         productName: "Mytestanimal",
-        productVersion: "0.3",
+        productVersion: "0.4",
         showBanner: unityShowBanner,
       };
 
@@ -83,9 +83,10 @@
         config.devicePixelRatio = 1;
         unityShowBanner('WebGL builds are not supported on mobile devices.');
       } else {
-        canvas.style.width = "960px";
-        canvas.style.height = "600px";
+        canvas.style.width = "1280px";
+        canvas.style.height = "720px";
       }
+      canvas.style.background = "url('" + buildUrl + "/web3new.jpg') center / cover";
       loadingBar.style.display = "block";
 
       var script = document.createElement("script");
