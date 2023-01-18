@@ -3,14 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>AmazingRacing</title>
-     <link rel="shortcut icon" href="TemplateData/favicon.png"/>
+    <title>Unity WebGL Player | testphotongoc</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
-  <body style="overflow: hidden">
   <body>
-    <div id="unity-container" style="width:100%; height=100%">
-      <canvas id="unity-canvas" width=1200 height=600></canvas>
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas" width=960 height=600></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
@@ -21,10 +20,9 @@
       <div id="unity-footer">
         <div id="unity-webgl-logo"></div>
         <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">AmazingRacing</div>
+        <div id="unity-build-title">testphotongoc</div>
       </div>
     </div>
-    <script src="web3/index.js"></script>
     <script>
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
@@ -58,15 +56,15 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/amazingracing.loader.js";
+      var loaderUrl = buildUrl + "/testthanhcong.loader.js";
       var config = {
-        dataUrl: buildUrl + "/amazingracing.data",
-        frameworkUrl: buildUrl + "/amazingracing.framework.js",
-        codeUrl: buildUrl + "/amazingracing.wasm",
+        dataUrl: buildUrl + "/testthanhcong.data",
+        frameworkUrl: buildUrl + "/testthanhcong.framework.js",
+        codeUrl: buildUrl + "/testthanhcong.wasm",
         streamingAssetsUrl: "StreamingAssets",
-        companyName: "lpstudio",
-        productName: "AmazingRacing",
-        productVersion: "0.4",
+        companyName: "DefaultCompany",
+        productName: "testphotongoc",
+        productVersion: "0.1",
         showBanner: unityShowBanner,
       };
 
@@ -78,15 +76,27 @@
       // config.matchWebGLToCanvasSize = false;
 
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
         container.className = "unity-mobile";
-        // Avoid draining fillrate performance on mobile devices,
-        // and default/override low DPI mode on mobile browsers.
-        config.devicePixelRatio = 1;
+        canvas.className = "unity-mobile";
+
+        // To lower canvas resolution on mobile devices to gain some
+        // performance, uncomment the following line:
+        // config.devicePixelRatio = 1;
+
         unityShowBanner('WebGL builds are not supported on mobile devices.');
       } else {
-        canvas.style.width = "100%";
-        canvas.style.height = "100%";
+        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+
+        canvas.style.width = "960px";
+        canvas.style.height = "600px";
       }
+
       loadingBar.style.display = "block";
 
       var script = document.createElement("script");
